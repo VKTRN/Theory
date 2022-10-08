@@ -1,4 +1,5 @@
 // handling asynchrounous functions using callbacks
+// firstFunction() and secondFunction() represent asynchronous functions that for example fetch data from a database
 
 const firstFunction = (callBack) => {
   console.log('run first function');

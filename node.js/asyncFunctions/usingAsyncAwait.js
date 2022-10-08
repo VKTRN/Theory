@@ -1,4 +1,5 @@
 // handling asynchrounous functions using async/await
+// firstFunction() and secondFunction() represent asynchronous functions that for example fetch data from a database
 
 const firstFunction = () => {
   console.log('run first function')
