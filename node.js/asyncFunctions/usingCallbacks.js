@@ -27,8 +27,10 @@ const logResult = (first, second) => {
   console.log(first, second);
 }
 
-firstFunction(() => {
+const a =  firstFunction(() => {
   secondFunction(() => {
       sayDone();
   }, handleError);
 }, handleError);
+
+console.log(a)

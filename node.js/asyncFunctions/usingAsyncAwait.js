@@ -1,48 +1,36 @@
 // handling asynchrounous functions using async/await
-// firstFunction() and secondFunction() represent asynchronous functions that for example fetch data from a database
 
-const firstFunction = () => {
-  console.log('run first function')
+const handleRejection = (value) => {
+  console.log('The promise was rejected. The value is ' + value);
+}
 
-  const promise = new Promise((resolve, reject) => {
+const handleResolve = (value) => {
+  console.log('The promise was resolved. The value is ' + value);
+}
+
+const handleAsyncCode = async () => {
+  
+  const iWillHaveAResultInThreeSeconds = new Promise((resolve, reject) => {
+    console.log('I will have a result in three seconds')
+    
     setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
+      const value = Math.random();
+  
+      if (value > 0.5) {
+        resolve(value);
+      }
+      reject(value);
+  
+    }, 3000);
+  })
 
-  return promise;
-}
-
-const secondFunction = () => {
-  console.log('run second function')
-
-  const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
-
-  return promise;
-}
-
-const handleError = () => {
-  console.log('error');
-}
-
-const sayDone = () => {
-  console.log('Done');
-}
-
-const handleAsync = async () => {
   try {
-    await firstFunction()
-    await secondFunction()
-    sayDone()
-
-  } catch (error) {
-    handleError()
+    const result = await iWillHaveAResultInThreeSeconds;
+    handleResolve(result);
+  }
+  catch (result) {
+    handleRejection(result);
   }
 }
 
-handleAsync()
-
+handleAsyncCode();
